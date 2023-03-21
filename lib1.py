@@ -57,3 +57,49 @@ def issueBook():
     if bookFound == False:
         print('No book found with ID: {}'.format(bookId))
 
+# This function is used to return a book to the library
+def returnBook():
+    bookFound = False
+
+    bookId = int(input("Enter book ID to return: "))
+
+    for book in books:
+        if book[0] == bookId:
+            bookFound = True
+            if len(book[3]) > 0:
+                userName = book[3]
+                book[3] = ''
+                print('Book with ID: {} has been unassigned from username: {}'.format(bookId, userName))
+            else:
+                print('Book with ID: {} is not assigned to any user'.format(bookId))
+    if bookFound == False:
+        print('No book found with ID: {}'.format(bookId))
+
+
+response = ''
+
+while response != 0:
+    print("\n\n    LIBRARY MENU    \n")
+    print("1. Add book")
+    print("2. Delete book")
+    print("3. List books")
+    print("4. Issue book")
+    print("5. Return book")
+    print("0. Exit")
+    response = input("\nChoose an option [0-5]: ")
+    if response not in ('1', '2', '3', '4', '5', '0'):
+        print("\nInvalid response. Please try again")
+    else:
+        response = int(response)
+        if response == 1:
+            addBook()
+        elif response == 2:
+            deleteBook()
+        elif response == 3:
+            listBooks()
+        elif response == 4:
+            issueBook()
+        elif response == 5:
+            returnBook()
+        elif response == 0:
+            print('\nThank you for using library management system. Bye...')
